@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Static S3 Site</title>
+  <meta name="description" content="A simple static website hosted on S3" />
+  <style>
+    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#2563eb;--muted:#6b7280}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:#111}
+    .container{max-width:900px;margin:36px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,#60a5fa,#7c3aed);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin-top:6px}
+    .card{background:var(--card);border-radius:12px;padding:20px;margin-top:20px;box-shadow:0 6px 20px rgba(12,18,28,0.06)}
+    .hero{display:grid;grid-template-columns:1fr 280px;gap:18px;align-items:start}
+    img.responsive{max-width:100%;border-radius:8px}
+    footer{margin-top:28px;color:var(--muted);font-size:0.9rem;text-align:center}
+    @media (max-width:760px){.hero{grid-template-columns:1fr}.brand h1{font-size:1.15rem}}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;background:var(--accent);color:#fff;font-weight:600}
+    ul.features{padding-left:1.05rem}
+    code{background:#f3f4f6;padding:2px 6px;border-radius:6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">S3</div>
+        <div>
+          <h1>My Static S3 Site</h1>
+          <p class="lead">A tiny static site served directly from an S3 bucket — fast, cheap, simple.</p>
+        </div>
+      </div>
+      <nav>
+        <a class="btn" href="#">Get started</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card hero" aria-labelledby="welcome">
+        <div>
+          <h2 id="welcome">Welcome</h2>
+          <p>Download this file as <code>index.html</code>, upload it into the root of your S3 bucket, enable <strong>Static website hosting</strong>, make objects public (or use CloudFront), and visit the website endpoint.</p>
+
+          <h3>Why this works</h3>
+          <ul class="features">
+            <li>All content is static HTML/CSS/JS — no server required.</li>
+            <li>Objects in S3 will be served as regular web assets (set <code>index.html</code> as index document).</li>
+            <li>For HTTPS and custom domains, add CloudFront and a certificate.</li>
+          </ul>
+
+          <p style="margin-top:12px">Sample actions:</p>
+          <p><a class="btn" href="#examples">See example content</a></p>
+        </div>
+
+        <aside>
+          <img class="responsive" alt="Static site preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='360'><rect width='100%' height='100%' fill='%23eef2ff'/><text x='50%' y='48%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%237373ff'>Static S3 Site Preview</text></svg>" />
+          <div style="margin-top:12px;font-size:0.95rem;color:var(--muted)">Status: <strong>Ready to upload</strong></div>
+        </aside>
+      </section>
+
+      <section id="examples" class="card">
+        <h3>Example page sections</h3>
+        <p>This simple page includes:</p>
+        <ol>
+          <li>An accessible header and hero section</li>
+          <li>A responsive image using an inline SVG placeholder</li>
+          <li>A footer showing the current year (via a tiny script)</li>
+        </ol>
+
+        <hr style="margin:18px 0">
+
+        <article>
+          <h4>Contact</h4>
+          <p>If you want a custom version (logo, colors, custom text), tell me what to change and I’ll update the file.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="card">
+      <div>© <span id="year"></span> My Static S3 Site — Built for S3 hosting demo.</div>
+    </footer>
+  </div>
+
+  <script>
+    // tiny script to insert current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
